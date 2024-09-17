@@ -1,37 +1,19 @@
-# Rapidez :package_name_without_prefix
-<!--delete-->
-This repository can be used as template for a new Rapidez package.
+# Rapidez Customer Pricing
 
-- Click on "Use this template" on the top of this Github repo page
-- Run `php ./configure.php`
-
-Credits to [`spatie/package-skeleton-laravel`](https://github.com/spatie/package-skeleton-laravel) for the inpiration for this template.
-
-Keep in mind that if you contribute to this template; it should work for official and unofficial packages!
-- `rapidez/something`
-- `someone/rapidez-something`
-<!--/delete-->
-:package_description
+This package adds Rapidez support for the [justbetter/magento2-customer-pricing magento extension](https://github.com/justbetter/magento2-customer-pricing). **This package will not work without this extension.**
 
 ## Installation
 
 ```
-composer require :vendor_slug/:package_slug
+composer require rapidez/customer-pricing
 ```
 
-## Configuration
+## Usage
 
-You can publish the config with:
-```
-php artisan vendor:publish --tag=rapidez-:package_slug_without_prefix-config
-```
-
-## Views
-
-You can publish the views with:
-```
-php artisan vendor:publish --tag=rapidez-:package_slug_without_prefix-views
-```
+This adds to the Product model:
+- A `customerPricing` relation that retrieves all customer prices and tiers for the given product
+- The `customerPrice(int $customerId, int $quantity = 1)` function which returns a customer price at the given tier, or null when none is found.
+- The `customerTierPrices(int $customerId)` function which returns all of the tier prices for a given customer (if any).
 
 ## License
 
