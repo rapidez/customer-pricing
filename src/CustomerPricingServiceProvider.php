@@ -10,6 +10,12 @@ class CustomerPricingServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->bootRelations()
+            ->bootRoutes();
+    }
+
+    public function bootRelations(): static
+    {
         Product::resolveRelationUsing('customerPricing', function(Product $productModel) {
             return $productModel->hasMany(CustomerPricing::class, 'product_id');
         });
@@ -30,5 +36,13 @@ class CustomerPricingServiceProvider extends ServiceProvider
                 ->orderBy('quantity')
                 ->get();
         });
+
+        return $this;
+    }
+
+    public function bootRoutes(): static
+    {
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        return $this;
     }
 }
