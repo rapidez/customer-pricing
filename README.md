@@ -25,7 +25,7 @@ This package also adds a simple frontend implementation that can be used by addi
 >
     <span>@{{ customerPrice || addToCart.price }}</span>
 </customer-price>
-``
+```
 
 ## License
 
