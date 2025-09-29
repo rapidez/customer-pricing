@@ -43,6 +43,10 @@ let pendingProducts = [];
 
 // This function batches multiple requests into one request every 100ms
 export const getPrices = async function (products) {
+    if (!window.app.loggedIn) {
+        return []
+    }
+
     if (!pendingPromise) {
         // If there is no request waiting to be sent, create one.
         pendingPromise = new Promise((resolve, reject) =>
