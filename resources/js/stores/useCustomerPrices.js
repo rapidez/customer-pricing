@@ -8,7 +8,18 @@ const getPricesRequest = async function (products) {
 
         // Only do a request if there are any missing products
         if (missing.length) {
-            let currentPrices = await rapidezAPI('POST', 'customerprices', { products: missing })
+            let currentPrices = {}
+            for (let i = 0; i < missing.length; i += window.config.customerpricing.max_products) {
+                let current = missing.slice(i, i + window.config.customerpricing.max_products)
+                currentPrices = {
+                    ...currentPrices,
+                    ...await rapidezAPI('POST', 'customerprices', { products: current }),
+                }
+            }
+
+            if (typeof currentPrices !== 'object') {
+                return
+            }
 
             // Add prices to total set of prices
             sessionStorageCustomerPrices.value = {
@@ -60,7 +71,5 @@ export const getPriceForProduct = async function (product) {
 }
 
 export const clearPrices = async function () {
-    prices.value = {}
+    sessionStorageCustomerPrices.value = {}
 }
-
-export default () => prices

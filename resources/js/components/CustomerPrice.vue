@@ -24,6 +24,10 @@ export default {
 
     watch: {
         customerPrices() {
+            if (!this.customerPrices) {
+                return
+            }
+            
             this.customerPrice = this.customerPrices
                 .filter(tier => tier.quantity <= this.quantity)
                 .toSorted((a, b) => a.price - b.price)

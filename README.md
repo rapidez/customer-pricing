@@ -15,7 +15,7 @@ This adds to the Product model:
 - The `customerPrice(int $customerId, int $quantity = 1)` function which returns a customer price at the given tier, or null when none is found.
 - The `customerTierPrices(int $customerId)` function which returns all of the tier prices for a given customer (if any).
 
-This package also adds a simple frontend implementation that can be used by adding the `customer-price` component onto your page:
+This package also adds a simple frontend implementation that can be used by adding the `customer-price` component onto your page. For example:
 
 ```blade
 <customer-price
@@ -26,6 +26,8 @@ This package also adds a simple frontend implementation that can be used by addi
     <span>@{{ customerPrice || addToCart.price }}</span>
 </customer-price>
 ```
+
+Requests made for this component get bundled together (collected over 100ms), allowing this to be used the same way in product listings.
 
 ## License
 
