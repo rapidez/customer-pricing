@@ -10,7 +10,7 @@ class ConfigComposer
     public function compose(View $view)
     {
         Config::set('frontend.customerpricing', [
-            'max_products' => config('rapidez.customerpricing.max-products'),
+            'max_products' => config('rapidez.customerpricing.max_products'),
         ]);
     }
 }

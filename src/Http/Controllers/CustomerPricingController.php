@@ -19,7 +19,7 @@ class CustomerPricingController
         /** @var int $customerId */
         $customerId = auth()->id();
 
-        abort_if(count($productIds) > config('rapidez.customerpricing.max-products'), 422);
+        abort_if(count($productIds) > config('rapidez.customerpricing.max_products'), 422);
 
         $prices = $productModel::withoutGlobalScopes()
             ->with('customerPricing')
