@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/customer-pricing/compare/4.0.0...4.0.0)
+[Unreleased changes](https://github.com/rapidez/customer-pricing/compare/4.1.0...4.1.0)
+## [4.1.0](https://github.com/rapidez/customer-pricing/releases/tag/4.1.0) - 2025-10-03
+
+### Added
+
+- Customer price Vue component (#2)
+
 ## [4.0.0](https://github.com/rapidez/customer-pricing/releases/tag/4.0.0) - 2025-07-18
 
 ### Added
