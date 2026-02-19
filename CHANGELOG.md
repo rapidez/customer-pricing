@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/customer-pricing/compare/4.1.0...4.1.0)
+[Unreleased changes](https://github.com/rapidez/customer-pricing/compare/5.0.0...5.0.0)
+## [5.0.0](https://github.com/rapidez/customer-pricing/releases/tag/5.0.0) - 2026-02-19
+
+### Added
+
+- Rapidez v5 support (#3)
+
 ## [4.1.0](https://github.com/rapidez/customer-pricing/releases/tag/4.1.0) - 2025-10-03
 
 ### Added
