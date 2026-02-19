@@ -21,11 +21,10 @@ class CustomerPricingController
 
         abort_if(count($productIds) > config('rapidez.customerpricing.max_products'), 422);
 
-        $prices = $productModel::withoutGlobalScopes()
+        $prices = $productModel::query()
             ->with('customerPricing')
             ->find($productIds)
-            ->mapWithKeys(fn ($product) => [$product->entity_id => $product->customerTierPrices($customerId)])
-            ->whereNotNull();
+            ->mapWithKeys(fn ($product) => [$product->entity_id => $product->customerTierPrices($customerId)]);
 
         return collect($productIds)->mapWithKeys(fn ($id) => [$id => $prices[$id] ?? null]);
     }

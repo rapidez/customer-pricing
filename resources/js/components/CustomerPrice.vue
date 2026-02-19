@@ -1,5 +1,5 @@
 <script>
-import { asyncComputed } from '@vueuse/core';
+import { computedAsync } from '@vueuse/core';
 import { getPriceForProduct } from '../stores/useCustomerPrices';
 
 export default {
@@ -12,23 +12,23 @@ export default {
     },
 
     render() {
-        return this.$scopedSlots.default(this)
+        return this?.$slots?.default?.(this)
     },
 
     data() {
         return {
-            customerPrices: asyncComputed(async () => await getPriceForProduct(this.productId)),
+            customerPrices: computedAsync(async () => await getPriceForProduct(this.productId)),
             customerPrice: null,
         }
     },
 
     watch: {
         customerPrices() {
-            if (!this.customerPrices) {
+            if (!this.customerPrices?.value) {
                 return
             }
-            
-            this.customerPrice = this.customerPrices
+
+            this.customerPrice = this.customerPrices.value
                 .filter(tier => tier.quantity <= this.quantity)
                 .toSorted((a, b) => a.price - b.price)
                 .at(0)?.price ?? null
