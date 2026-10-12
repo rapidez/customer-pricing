@@ -3,7 +3,7 @@ import { useSessionStorage } from '@vueuse/core'
 const sessionStorageCustomerPrices = useSessionStorage('customerPrices', {})
 
 const getPricesRequest = async function (products) {
-    if (!window.app.loggedIn) {
+    if (!window.app.config.globalProperties.loggedIn.value) {
         return []
     }
     
