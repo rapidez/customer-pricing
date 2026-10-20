@@ -3,8 +3,8 @@ import { useSessionStorage } from '@vueuse/core'
 const sessionStorageCustomerPrices = useSessionStorage('customerPrices', {})
 
 const getPricesRequest = async function (products) {
-    if (!window.app.loggedIn) {
-        return []
+    if (!window.app.config.globalProperties.loggedIn.value) {
+        return {}
     }
     
     try {
@@ -21,10 +21,6 @@ const getPricesRequest = async function (products) {
                 }
             }
 
-            if (typeof currentPrices !== 'object') {
-                return
-            }
-
             // Add prices to total set of prices
             sessionStorageCustomerPrices.value = {
                 ...sessionStorageCustomerPrices.value,
@@ -39,6 +35,8 @@ const getPricesRequest = async function (products) {
     } catch (error) {
         Notify(window.config.translations.errors.wrong, 'error')
         console.error(error)
+
+        return {}
     }
 }
 

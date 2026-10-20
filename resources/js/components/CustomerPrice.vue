@@ -1,6 +1,5 @@
 <script>
-import { computedAsync } from '@vueuse/core';
-import { getPriceForProduct } from '../stores/useCustomerPrices';
+import { getPriceForProduct } from '../stores/useCustomerPrices'
 
 export default {
     props: {
@@ -17,22 +16,26 @@ export default {
 
     data() {
         return {
-            customerPrices: computedAsync(async () => await getPriceForProduct(this.productId)),
-            customerPrice: null,
+            customerPrices: null,
         }
     },
 
     watch: {
-        customerPrices() {
-            if (!this.customerPrices?.value) {
-                return
-            }
+        productId: {
+            async handler(productId) {
+                this.customerPrices = await getPriceForProduct(productId)
+            },
+            immediate: true,
+        },
+    },
 
-            this.customerPrice = this.customerPrices.value
-                .filter(tier => tier.quantity <= this.quantity)
-                .toSorted((a, b) => a.price - b.price)
+    computed: {
+        customerPrice() {
+            return this.customerPrices
+                ?.filter(tier => tier.quantity <= this.quantity)
+                .toSorted((a, b) => b.quantity - a.quantity)
                 .at(0)?.price ?? null
-        }
-    }
+        },
+    },
 }
 </script>
