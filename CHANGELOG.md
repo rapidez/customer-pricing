@@ -1,6 +1,12 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/rapidez/customer-pricing/compare/5.0.1...5.0.1)
+[Unreleased changes](https://github.com/rapidez/customer-pricing/compare/5.0.2...5.0.2)
+## [5.0.2](https://github.com/rapidez/customer-pricing/releases/tag/5.0.2) - 2026-10-20
+
+### Fixed
+
+- Fix loggedIn value & other v5 bugfixes (#5)
+
 ## [5.0.1](https://github.com/rapidez/customer-pricing/releases/tag/5.0.1) - 2026-09-10
 
 ### Fixed
